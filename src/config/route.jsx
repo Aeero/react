@@ -4,12 +4,14 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import { Router, Route, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
 
+import store from './store';
 
-import Home from './home';
-import Explore from './explore';
-import Info from './info';
-import Topic from './topic';
+import Home from '../components/home';
+import Explore from '../components/explore';
+import Info from '../components/info';
+import Topic from '../components/topic';
 // import Signin from './signin';
 
 /*
@@ -131,11 +133,12 @@ function Detail() {
 */
 // 最终渲染
 ReactDom.render(
-  <Router history={browserHistory}>
-    <Route path="/" component={Home} />
-    <Route path="/topic" component={Topic} />
-    <Route path="/explore" component={Explore} />
-    <Route path="/info" component={Info} />
-
-  </Router>
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={Home} />
+      <Route path="/topic" component={Topic} />
+      <Route path="/explore" component={Explore} />
+      <Route path="/info" component={Info} />
+    </Router>
+  </Provider>
 , document.getElementById('app'));
